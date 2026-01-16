@@ -1,0 +1,19 @@
+theme = Kanagawabones
+
+cursor-style-blink = false
+cursor-style = bar
+font-family = "JetBrainsMono Nerd Font"
+
+# Disable the automatic cursor changes from shell integration
+shell-integration-features = no-cursor
+
+# Optional: Set a specific consistent cursor style
+cursor-style-blink = false
+
+# MacOS
+
+# Window style
+background-opacity = 0.85
+background-blur-radius = 20
+macos-titlebar-style = transparent
+
