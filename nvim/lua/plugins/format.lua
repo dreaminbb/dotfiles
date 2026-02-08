@@ -25,6 +25,8 @@ return { -- Autoformat
 			html = { "prettierd", "prettier", stop_after_first = true },
 			css = { "prettierd", "prettier", stop_after_first = true },
 			c = {},
+			sh = { "shfmt" },
+			zsh = { "shfmt" },
 		},
 	},
 }

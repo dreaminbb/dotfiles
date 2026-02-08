@@ -33,6 +33,3 @@ require("lazy").setup({
 		},
 	},
 })
-
--- ドットファイルを表示
-vim.env.FZF_DEFAULT_COMMAND = 'rg --files --hidden --glob "!.git/*"'

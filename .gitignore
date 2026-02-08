@@ -7,3 +7,5 @@ nvim/.DS_Store
 raycast/extensions
 thefuck
 .DS_Store
+
+tmux/plugins/

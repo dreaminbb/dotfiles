@@ -147,14 +147,6 @@
                             "to": [{ "key_code": "escape" }]
                         }
                     ]
-                },
-                {
-                    "identifiers": {
-                        "is_pointing_device": true,
-                        "product_id": 64160,
-                        "vendor_id": 9639
-                    },
-                    "ignore": false
                 }
             ],
             "name": "Default profile",

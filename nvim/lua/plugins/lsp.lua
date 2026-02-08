@@ -51,6 +51,7 @@ return {
                 "cssls",
                 "html",
                 "jsonls",
+                "bashls",
             },
             automatic_installation = true,
             handlers = {

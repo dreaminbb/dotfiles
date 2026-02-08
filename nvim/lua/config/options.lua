@@ -47,3 +47,5 @@ vim.diagnostic.config({
 })
 
 vim.opt.clipboard:append({ "unnamedplus" })
+-- ドットファイルを表示
+vim.env.FZF_DEFAULT_COMMAND = 'rg --files --hidden --glob "!.git/*"'
