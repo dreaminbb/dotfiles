@@ -193,3 +193,7 @@ vim.api.nvim_set_keymap(
 	"<cmd>lua vim.diagnostic.goto_next()<cr>",
 	{ desc = "Go to next diagnostic", noremap = true, silent = true }
 )
+
+
+-- Lazygit
+vim.api.nvim_set_keymap("n", "<leader>lg", "<cmd>LazyGit<cr>", { desc = "LazyGit" , noremap=true , silent=true})

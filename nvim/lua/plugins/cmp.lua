@@ -27,10 +27,10 @@ return {
 				}),
 				-- use arrow key
 
-				["<Up>"] = cmp.mapping.select_prev_item({
+				["<C-k>"] = cmp.mapping.select_prev_item({
 					behavior = cmp.SelectBehavior.Insert,
 				}),
-				["<Down>"] = cmp.mapping.select_next_item({
+				["<C-j>"] = cmp.mapping.select_next_item({
 					behavior = cmp.SelectBehavior.Insert,
 				}),
 				["<C-f>"] = cmp.mapping.scroll_docs(4),
@@ -63,9 +63,8 @@ return {
 		cmp.setup.cmdline(":", {
 			mapping = cmp.mapping.preset.cmdline(),
 			sources = cmp.config.sources({
-				{ name = "path" },
-			}, {
 				{ name = "cmdline" },
+				{ name = "path" },
 			}),
 		})
 	end,
