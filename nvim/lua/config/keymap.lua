@@ -31,10 +31,6 @@ vim.keymap.set("n", "<leader>ca", function()
 	vim.lsp.buf.code_action()
 end, { desc = "Code Actions", noremap = true, silent = true })
 
-vim.keymap.set("v", "<leader>ca", function()
-	vim.lsp.buf.code_action()
-end, { desc = "Code Actions", noremap = true, silent = true })
-
 vim.api.nvim_set_keymap( "n", "<leader><leader>", "<cmd>Telescope find_files<cr>", { desc = "Find Files (Root Dir)", noremap = true, silent = true })
 
 -- Format
@@ -146,6 +142,21 @@ vim.api.nvim_set_keymap(
 	"<cmd>Telescope grep_string<cr>",
 	{ desc = "Word (Root Dir)", noremap = true, silent = true }
 )
+
+
+-- on_attach: set up keymaps when LSP attaches to buffer
+local opts = { noremap = true, silent = true, buffer = bufnr }
+vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, opts)
+vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+vim.keymap.set("n", "<leader>f", function()
+    vim.lsp.buf.format({ async = true })
+end, opts)
 
 --前のファイルに戻る
 vim.keymap.set("n", "<C-b>", "<C-^>", { noremap = true, silent = true })
