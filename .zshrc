@@ -118,15 +118,10 @@ export PATH="/opt/homebrew/opt/arm-gcc-bin@14/bin:$PATH"
 
 export PATH="/Applications/ArmGNUToolchain/15.2.rel1/arm-none-eabi/bin:$PATH"
 
-export ANTHROPIC_AUTH_TOKEN=ollama
-export OLLAMA_TOKEN=0d97634a88b646fc882c8c8d5d0f34eb.c4NyHViHlEmty1GYp4XfiRKW
-export ANTHROPIC_BASE_URL=http://localhost:11434
-
 # Added by Antigravity CLI installer
 export PATH="/Users/shin/.local/bin:$PATH"
 export PATH="/Users/shin/.local/bin:$PATH"
 
 export PATH="$HOME/.local/bin:$PATH"
 
-export BLUEUTIL_ALLOW_ROOT=1
 export EDITOR="nvim"

@@ -44,7 +44,7 @@ return {
 				globalstatus = true,
 
 				disabled_filetypes = {
-					statusline = { "dashboard", "alpha", "NvimTree", "neo-tree", "oil" },
+					statusline = { "oil" },
 					winbar = { "oil" },
 				},
 			},
@@ -92,19 +92,13 @@ return {
 						},
 					},
 				},
+				lualine_x = {},
 				lualine_y = {
 					{ "encoding", color = { fg = mocha.gray } },
 				},
 				lualine_z = {
 					{ "progress", color = { fg = mocha.cyan } },
 				},
-			},
-			inactive_sections = {
-				lualine_a = {},
-				lualine_b = {},
-				lualine_x = { "location" },
-				lualine_y = {},
-				lualine_z = {},
 			},
 		})
 	end,
