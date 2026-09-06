@@ -42,7 +42,11 @@ return {
 				component_separators = {},
 				section_separators = {},
 				globalstatus = true,
-				disabled_filetypes = { statusline = { "dashboard", "alpha", "NvimTree", "neo-tree" } },
+
+				disabled_filetypes = {
+					statusline = { "dashboard", "alpha", "NvimTree", "neo-tree", "oil" },
+					winbar = { "oil" },
+				},
 			},
 			sections = {
 				lualine_a = {
