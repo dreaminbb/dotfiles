@@ -1,12 +1,12 @@
 return {
-
 	"akinsho/toggleterm.nvim",
 	version = "*",
-	opts = {},
+	lazy = false,
+	priority = 1000,
 	config = function()
 		require("toggleterm").setup({
-			size = 100,
-			open_mapping = [[<c-t>]],
+			open_mapping = [[<c-\>]],
+			size = 20,
 			hide_numbers = true,
 			shade_filetypes = {},
 			shade_terminals = true,
@@ -16,6 +16,7 @@ return {
 			persist_size = true,
 			direction = "float",
 			close_on_exit = true,
+			shell = vim.o.shell,
 		})
 	end,
 }

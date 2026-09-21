@@ -32,7 +32,7 @@ map("n", "<C-h>", tmux_navigate("Left"), { desc = "Move left" })
 map("n", "<C-j>", tmux_navigate("Down"), { desc = "Move down" })
 map("n", "<C-k>", tmux_navigate("Up"), { desc = "Move up" })
 map("n", "<C-l>", tmux_navigate("Right"), { desc = "Move right" })
-map("n", "<leader>f", telescope_builtin("find_files"), { desc = "Find files" })
+map("n", "<leader>ff", telescope_builtin("find_files"), { desc = "Find files" })
 map("n", "<leader>fg", telescope_builtin("live_grep"), { desc = "Live grep" })
 
 -- buffer
@@ -43,9 +43,9 @@ map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection down", silent = true 
 map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selection up", silent = true })
 map("v", "H", "<gv", { desc = "Move selection left" })
 map("v", "L", ">gv", { desc = "Move selection right" })
-map("v", "<leader>p", '"_dP', { desc = "Paste over selection without losing yank" })
+map("v", "<leader>p", '"_dP', { desc = "Paste over selection without losing yank", silent = true })
 
-map("n", "<leader>e", "<cmd>Oil<cr>", { desc = "open OIl" })
+map("n", "<leader>e", "<cmd>Oil<cr>", { desc = "open OIl", silent = true })
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("UserLspKeymaps", {}),
@@ -66,23 +66,24 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		bufmap("n", "<leader>rn", vim.lsp.buf.rename, "Rename")
 		bufmap("n", "<leader>ca", vim.lsp.buf.code_action, "Code action")
 		bufmap("n", "<leader>D", vim.lsp.buf.type_definition, "Type definition")
+		bufmap("n", "<leader>d", vim.diagnostic.open_float, "Show diagnostic in float")
 		bufmap("n", "<leader>F", function()
 			vim.lsp.buf.format({ async = true })
 		end, "Format buffer")
-		bufmap("n", "[d", vim.diagnostic.goto_prev, "Prev diagnostic")
-		bufmap("n", "]d", vim.diagnostic.goto_next, "Next diagnostic")
+
+		-- diagnostics fzf
+		bufmap("n", "<leader>fd", require("telescope.builtin").diagnostics, "Show diagnostics in Telescope")
+
+		bufmap("n", "<leader>fD", function()
+			require("telescope.builtin").diagnostics({ bufnr = 0 }) -- 0はカレントバッファのみ、指定しない（デフォルト）か引数を調整することで全体になります
+		end, "Telescope workspace diagnostics")
 	end,
 })
 
-local Terminal = require("toggleterm.terminal").Terminal
-local lazygit = Terminal:new({
-	cmd = "lazygit",
-	direction = "float",
-	hidden = true,
-})
+vim.keymap.set("n", "]d", function()
+	vim.diagnostic.jump({ count = 1, float = true })
+end, { desc = "次の診断へ移動" })
 
-function _lazygit_toggle()
-	lazygit:toggle()
-end
-
-vim.api.nvim_set_keymap("n", "lg", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "[d", function()
+	vim.diagnostic.jump({ count = -1, float = true })
+end, { desc = "前の診断へ移動" })

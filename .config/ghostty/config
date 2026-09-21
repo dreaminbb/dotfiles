@@ -1,7 +1,7 @@
 # Managed by dotfiles.
 theme = Catppuccin Mocha
 font-family = "Jetbrain Nerd Font Prop"
-font-size = 15
+font-size = 13
 
 clipboard-read = allow
 copy-on-select = clipboard
@@ -9,8 +9,8 @@ macos-titlebar-proxy-icon = hidden
 macos-titlebar-style = hidden
 shell-integration = zsh
 window-vsync = false
+macos-option-as-alt = true
 
-
-background-opacity = 0.9
+background-opacity = 0.97
 macos-titlebar-style = hidden
 

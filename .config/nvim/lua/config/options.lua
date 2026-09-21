@@ -25,3 +25,5 @@ vim.opt.cursorline = true
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.shortmess:append("c")
 vim.opt.splitkeep = "screen"
+vim.opt.maxmempattern = 5000
+vim.o.winborder = "rounded"
