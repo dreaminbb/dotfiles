@@ -1,0 +1,25 @@
+CompileFlags:
+  CompilationDatabase: None
+  BuiltinHeaders: QueryDriver
+  Remove:
+    - -isysroot
+    - -arch=*
+    - -mlongcalls
+    - -mdisable-hardware-atomics
+    - -mfix-esp32-psram-cache-issue
+    - -mfix-esp32-psram-cache-strategy=*
+    - -fstrict-volatile-bitfields
+    - -fno-tree-switch-conversion
+
+Completion:
+  AllScopes: Yes
+  ArgumentLists: FullPlaceholders
+  HeaderInsertion: IWYU
+  CodePatterns: All
+  MacroFilter: FuzzyMatch
+
+If:
+  PathMatch: .*[.]ino$
+Diagnostics:
+  Suppress:
+    - ovl_no_viable_member_function_in_call

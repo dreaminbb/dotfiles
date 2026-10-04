@@ -1,0 +1,6 @@
+#!/bin/sh
+
+: "${NVIM_ARDUINO_CLANGD:?clangd executable is not configured}"
+: "${NVIM_ARDUINO_CLANGD_HOME:?clangd config home is not configured}"
+
+exec env HOME="$NVIM_ARDUINO_CLANGD_HOME" "$NVIM_ARDUINO_CLANGD" "$@"

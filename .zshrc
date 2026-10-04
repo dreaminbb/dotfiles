@@ -43,6 +43,7 @@ source $ZSH/oh-my-zsh.sh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 eval "$(zoxide init zsh)"
+eval "$(direnv hook zsh)" # ESP-IDF
 # bun completions
 [ -s "/Users/shin/.bun/_bun" ] && source "/Users/shin/.bun/_bun"
 
@@ -62,23 +63,13 @@ v-f() {
 }
 
 alias g='git'
-alias lg='lazygit'
-
 alias wat="system_profiler SPPowerDataType | grep Wattage"
 alias t="tmux"
-alias cop='pbcopy'
 alias update='brew update && brew upgrade  && brew cleanup && rustup update && bun upgrade'
-alias py="python3"
-alias pip="pip3"
-alias ls='lsd -l'
-alias l='lsd -l'
-alias la='lsd -a'
-alias lla='lsd -la'
-alias C="clear"
+alias ls=' lsd --git  --long --all'
 alias E="exit"
-alias pl="picotool"
 alias v="nvim"
-
+alias esp-idf="source \"/Users/shin/.espressif/tools/activate_idf_v6.1.sh\""
 # fzf の設定を読み込む
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -125,3 +116,4 @@ export PATH="/Users/shin/.local/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
 export EDITOR="nvim"
+export CMAKE_PREFIX_PATH=/opt/homebrew/opt/llvm

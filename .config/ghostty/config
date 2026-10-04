@@ -11,6 +11,6 @@ shell-integration = zsh
 window-vsync = false
 macos-option-as-alt = true
 
-background-opacity = 0.97
+background-opacity = 0.9
 macos-titlebar-style = hidden
 

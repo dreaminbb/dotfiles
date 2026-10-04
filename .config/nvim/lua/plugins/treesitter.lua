@@ -6,7 +6,8 @@ return {
 	build = ":TSUpdate",
 	lazy = false,
 	config = function()
-		require("nvim-treesitter").setup({
+		local treesitter = require("nvim-treesitter")
+		treesitter.setup({
 			install_dir = vim.fn.stdpath("data") .. "/site",
 			highlight = {
 				enable = true,
@@ -17,6 +18,7 @@ return {
 			},
 			ensure_installed = {
 				"bash",
+				"arduino",
 				"c",
 				"cpp",
 				"css",
@@ -40,5 +42,11 @@ return {
 				"swift",
 			},
 		})
+
+		-- Install Arduino queries/parser asynchronously so opening an .ino file
+		-- does not wait for the parser download/build.
+		vim.schedule(function()
+			treesitter.install({ "arduino" })
+		end)
 	end,
 }

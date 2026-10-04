@@ -3,15 +3,6 @@ vim.g.maplocalleader = " "
 vim.g.have_nerd_font = true
 local map = vim.keymap.set
 
-local function telescope_builtin(name)
-	return function()
-		local ok, builtin = pcall(require, "telescope.builtin")
-		if ok and builtin[name] then
-			builtin[name]()
-		end
-	end
-end
-
 local function toggle_quickfix()
 	local qf = vim.fn.getqflist({ winid = 0 })
 	if qf.winid ~= 0 then
@@ -32,11 +23,7 @@ map("n", "<C-h>", tmux_navigate("Left"), { desc = "Move left" })
 map("n", "<C-j>", tmux_navigate("Down"), { desc = "Move down" })
 map("n", "<C-k>", tmux_navigate("Up"), { desc = "Move up" })
 map("n", "<C-l>", tmux_navigate("Right"), { desc = "Move right" })
-map("n", "<leader>ff", telescope_builtin("find_files"), { desc = "Find files" })
-map("n", "<leader>fg", telescope_builtin("live_grep"), { desc = "Live grep" })
 
--- buffer
-map("n", "<leader>b", telescope_builtin("buffers"), { desc = "Find buffers" })
 map("n", "<leader>q", toggle_quickfix, { desc = "Toggle quickfix" })
 
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection down", silent = true })
@@ -46,44 +33,3 @@ map("v", "L", ">gv", { desc = "Move selection right" })
 map("v", "<leader>p", '"_dP', { desc = "Paste over selection without losing yank", silent = true })
 
 map("n", "<leader>e", "<cmd>Oil<cr>", { desc = "open OIl", silent = true })
-
-vim.api.nvim_create_autocmd("LspAttach", {
-	group = vim.api.nvim_create_augroup("UserLspKeymaps", {}),
-	callback = function(event)
-		local bufmap = function(mode, lhs, rhs, desc)
-			vim.keymap.set(mode, lhs, rhs, {
-				buffer = event.buf,
-				silent = true,
-				desc = desc,
-			})
-		end
-
-		bufmap("n", "gd", vim.lsp.buf.definition, "Go to definition")
-		bufmap("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
-		bufmap("n", "gi", vim.lsp.buf.implementation, "Go to implementation")
-		bufmap("n", "gr", vim.lsp.buf.references, "References")
-		bufmap("n", "K", vim.lsp.buf.hover, "Hover")
-		bufmap("n", "<leader>rn", vim.lsp.buf.rename, "Rename")
-		bufmap("n", "<leader>ca", vim.lsp.buf.code_action, "Code action")
-		bufmap("n", "<leader>D", vim.lsp.buf.type_definition, "Type definition")
-		bufmap("n", "<leader>d", vim.diagnostic.open_float, "Show diagnostic in float")
-		bufmap("n", "<leader>F", function()
-			vim.lsp.buf.format({ async = true })
-		end, "Format buffer")
-
-		-- diagnostics fzf
-		bufmap("n", "<leader>fd", require("telescope.builtin").diagnostics, "Show diagnostics in Telescope")
-
-		bufmap("n", "<leader>fD", function()
-			require("telescope.builtin").diagnostics({ bufnr = 0 }) -- 0はカレントバッファのみ、指定しない（デフォルト）か引数を調整することで全体になります
-		end, "Telescope workspace diagnostics")
-	end,
-})
-
-vim.keymap.set("n", "]d", function()
-	vim.diagnostic.jump({ count = 1, float = true })
-end, { desc = "次の診断へ移動" })
-
-vim.keymap.set("n", "[d", function()
-	vim.diagnostic.jump({ count = -1, float = true })
-end, { desc = "前の診断へ移動" })

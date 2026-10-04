@@ -41,6 +41,8 @@ return {
 							"diagnostics",
 							sources = { "nvim_diagnostic" },
 							symbols = { error = " ", warn = " ", info = " ", hint = "<?>" },
+							update_in_insert = false, -- インサートモード中は更新しない
+							always_visible = false, -- 診断がない場合は非表示にする
 						},
 					},
 

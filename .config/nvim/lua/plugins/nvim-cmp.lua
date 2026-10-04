@@ -22,6 +22,12 @@ return {
 			require("luasnip.loaders.from_vscode").lazy_load()
 
 			cmp.setup({
+				completion = {
+					autocomplete = {
+						cmp.TriggerEvent.TextChanged,
+						cmp.TriggerEvent.InsertEnter,
+					},
+				},
 				snippet = {
 					expand = function(args)
 						luasnip.lsp_expand(args.body)
@@ -78,6 +84,15 @@ return {
 					{ name = "path" },
 				}, {
 					{ name = "buffer" },
+				}),
+			})
+
+			cmp.setup.filetype({ "arduino", "ino" }, {
+				sources = cmp.config.sources({
+					{ name = "nvim_lsp" },
+					{ name = "path" },
+				}, {
+					{ name = "buffer", keyword_length = 2 },
 				}),
 			})
 

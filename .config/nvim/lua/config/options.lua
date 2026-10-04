@@ -27,3 +27,4 @@ vim.opt.shortmess:append("c")
 vim.opt.splitkeep = "screen"
 vim.opt.maxmempattern = 5000
 vim.o.winborder = "rounded"
+vim.o.scrollback = 10000
